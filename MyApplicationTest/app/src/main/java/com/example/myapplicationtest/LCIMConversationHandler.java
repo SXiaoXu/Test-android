@@ -1,8 +1,5 @@
 package com.example.myapplicationtest;
 
-
-import com.alibaba.fastjson.JSONObject;
-
 import java.util.List;
 
 import cn.leancloud.im.v2.AVIMClient;
@@ -81,11 +78,5 @@ public class LCIMConversationHandler extends AVIMConversationEventHandler {
 //            System.out.println("messagemessage " + message.getMessageId() + " updated!");
 //            System.out.println("messagemessage " + message.getMessageId() + " updated!"+ conversation.getUnreadMessagesCount());
         }
-    @Override
-    public void onInfoChanged(AVIMClient client, AVIMConversation conversation, JSONObject attr, String operator) {
-        super.onInfoChanged(client, conversation, attr, operator);
-            System.out.println("conversation: " + conversation.getConversationId() );
-            System.out.println("client " + client.toString());
-            System.out.println("attr " + attr.toString());
-    }
+
 }
