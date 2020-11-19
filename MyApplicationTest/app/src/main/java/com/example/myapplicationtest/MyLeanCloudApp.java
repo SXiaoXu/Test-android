@@ -21,6 +21,11 @@ public class MyLeanCloudApp extends Application {
     private static final String APPID = "2S3eFs2gbLVcDKBtXTM0e5KX-gzGzoHsz";
     private static final String APPKEY = "CY6NPCRRLpPGKLCe8372924N";
     private static final String APP_SERVER_HOST = "https://ip-np10.iwxnews.com";
+
+//    //振宇的测试应用，有自定义域名
+//    private static final String APPID = "8ijVI3gBAnPGynW0rVfh5gHP-gzGzoHsz";
+//    private static final String APPKEY = "265r8JSHhNYpV0qIJBvUWrQY";
+//    private static final String APP_SERVER_HOST = "https://api.iwxnews.com";
     @Override
     public void onCreate() {
         super.onCreate();
@@ -29,8 +34,6 @@ public class MyLeanCloudApp extends Application {
         AVIMMessageManager.setConversationEventHandler(new CustomConversationEventHandler());
     }
 }
-
-
 //        //未读消息数量更新
 //        AVIMOptions.getGlobalOptions().setUnreadNotificationEnabled(true);
 //        // 和 Conversation 相关的事件的 handler
