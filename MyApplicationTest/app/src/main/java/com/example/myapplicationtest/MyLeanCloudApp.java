@@ -1,37 +1,25 @@
 package com.example.myapplicationtest;
-
 import android.app.Application;
-
-import java.util.List;
-
-import cn.leancloud.AVInstallation;
 import cn.leancloud.AVLogger;
 import cn.leancloud.AVOSCloud;
-import cn.leancloud.AVObject;
-import cn.leancloud.im.AVIMOptions;
-import cn.leancloud.im.v2.AVIMClient;
-import cn.leancloud.im.v2.AVIMConversation;
-import cn.leancloud.im.v2.AVIMConversationEventHandler;
 import cn.leancloud.im.v2.AVIMMessageManager;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
 public class MyLeanCloudApp extends Application {
 
-    private static final String APPID = "2S3eFs2gbLVcDKBtXTM0e5KX-gzGzoHsz";
-    private static final String APPKEY = "CY6NPCRRLpPGKLCe8372924N";
-    private static final String APP_SERVER_HOST = "https://ip-np10.iwxnews.com";
+//    private static final String APPID = "JMBPc7y4SUPRDrOSHXjXVMN7-gzGzoHsz";
+//    private static final String APPKEY = "Wib2dECd48h1FzivFrH628ju";
+//    private static final String APP_SERVER_HOST = "https://jmbpc7y4.lc-cn-n1-shared.com";
 
-//    //振宇的测试应用，有自定义域名
-//    private static final String APPID = "8ijVI3gBAnPGynW0rVfh5gHP-gzGzoHsz";
-//    private static final String APPKEY = "265r8JSHhNYpV0qIJBvUWrQY";
-//    private static final String APP_SERVER_HOST = "https://api.iwxnews.com";
+    private static final String APPID = "heQFQ0SwoQqiI3gEAcvKXjeR-gzGzoHsz";
+    private static final String APPKEY = "lNSjPPPDohJjYMJcQSxi9qAm";
+    private static final String APP_SERVER_HOST = "https://heqfq0sw.lc-cn-n1-shared.com";
     @Override
     public void onCreate() {
         super.onCreate();
         AVOSCloud.setLogLevel(AVLogger.Level.DEBUG);
         AVOSCloud.initialize(this, APPID, APPKEY, APP_SERVER_HOST);
         AVIMMessageManager.setConversationEventHandler(new CustomConversationEventHandler());
+
     }
 }
 //        //未读消息数量更新
