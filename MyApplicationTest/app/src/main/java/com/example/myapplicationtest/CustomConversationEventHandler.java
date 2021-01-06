@@ -14,6 +14,10 @@ public class CustomConversationEventHandler extends AVIMConversationEventHandler
         @Override
         public void onMemberLeft(AVIMClient client, AVIMConversation conversation, List<String> members, String kickedBy) {
                 System.out.println("onMemberLeft ------" +kickedBy);
+                System.out.println("members ------" +members.toString());
+                System.out.println("conversationm--members ------" +conversation.getMembers().toString());
+
+
 
         }
         @Override
