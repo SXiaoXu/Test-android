@@ -37,28 +37,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void done(AVIMClient client, AVIMException e) {
                         if (e == null) {
-                            AVUser.requestPasswordResetBySmsCodeInBackground("+8618200008888").subscribe(new Observer<AVNull>() {
-                                @Override
-                                public void onSubscribe(Disposable d) {
-                                    //
-
-                                }
-
-                                @Override
-                                public void onNext(AVNull avNull) {
-
-                                }
-
-                                @Override
-                                public void onError(Throwable e) {
-
-                                }
-
-                                @Override
-                                public void onComplete() {
-
-                                }
-                            });
                             // 成功打开连接
                             jerry.createConversation(Arrays.asList("GGG"), "测试", null, false, true,
                                     new AVIMConversationCreatedCallback() {
