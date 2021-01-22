@@ -2,6 +2,8 @@ package com.example.myapplicationtest;
 import android.app.Application;
 import cn.leancloud.AVLogger;
 import cn.leancloud.AVOSCloud;
+import cn.leancloud.im.v2.AVIMClient;
+import cn.leancloud.im.v2.AVIMClientEventHandler;
 import cn.leancloud.im.v2.AVIMMessageManager;
 
 public class MyLeanCloudApp extends Application {
@@ -19,6 +21,7 @@ public class MyLeanCloudApp extends Application {
         AVOSCloud.setLogLevel(AVLogger.Level.DEBUG);
         AVOSCloud.initialize(this, APPID, APPKEY, APP_SERVER_HOST);
         AVIMMessageManager.setConversationEventHandler(new CustomConversationEventHandler());
+        AVIMClient.setClientEventHandler(MyClientEventHandler.getInstance());
 
     }
 }

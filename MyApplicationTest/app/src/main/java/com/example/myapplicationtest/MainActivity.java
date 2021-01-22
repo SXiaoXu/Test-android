@@ -12,8 +12,11 @@ import cn.leancloud.AVUser;
 import cn.leancloud.im.v2.AVIMClient;
 import cn.leancloud.im.v2.AVIMConversation;
 import cn.leancloud.im.v2.AVIMException;
+import cn.leancloud.im.v2.AVIMMessage;
 import cn.leancloud.im.v2.callback.AVIMClientCallback;
 import cn.leancloud.im.v2.callback.AVIMConversationCreatedCallback;
+import cn.leancloud.im.v2.callback.AVIMConversationSimpleResultCallback;
+import cn.leancloud.im.v2.callback.AVIMMessagesQueryCallback;
 import cn.leancloud.im.v2.callback.AVIMOperationFailure;
 import cn.leancloud.im.v2.callback.AVIMOperationPartiallySucceededCallback;
 import cn.leancloud.types.AVNull;
@@ -38,27 +41,38 @@ public class MainActivity extends AppCompatActivity {
                     public void done(AVIMClient client, AVIMException e) {
                         if (e == null) {
                             // 成功打开连接
-                            jerry.createConversation(Arrays.asList("GGG"), "测试", null, false, true,
+                            System.out.println("---登陆成功---" );
+
+                                jerry.createConversation(Arrays.asList("NNNMMM"),  null, null, true,
                                     new AVIMConversationCreatedCallback() {
                                         @Override
                                         public void done(AVIMConversation conversation, AVIMException e) {
                                             if(e == null) {
                                                 // 创建成功
-                                                conversation.blockMembers(Arrays.asList("GGG"), new AVIMOperationPartiallySucceededCallback() {
+                                                int limit = 10;
+                                                conversation.blockMembers(Arrays.asList("NNNMMM"), new AVIMOperationPartiallySucceededCallback() {
                                                     @Override
                                                     public void done(AVIMException e, List<String> successfulClientIds, List<AVIMOperationFailure> failures) {
-                                                        if(e == null){
-                                                            System.out.println("block成功!!!!!!!!" );
-                                                            System.out.println("block成功!!!!!!!!" + successfulClientIds);
-                                                            System.out.println("block成功!!!!!!!!" + failures);
-                                                        }else{
-                                                            System.out.println("block失败!!!!!!!!"+e.getCode() +e.getMessage() );
-                                                        }
+
+
+                                                        conversation.queryBlockedMembers( new AVIMConversationSimpleResultCallback() {
+                                                            @Override
+                                                            public void done(List<String> memberIdList, AVIMException e) {
+
+                                                                System.out.println("---memberIdList---"+memberIdList.toString() );
+
+
+                                                            }
+                                                        });
                                                     }
                                                 });
+
+
+
                                             }
                                         }
                                     });
+
                         }
                     }
                 });
@@ -67,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AVIMClient jerry = AVIMClient.getInstance("Tom");
-                jerry.open(new AVIMClientCallback() {
+                AVIMClient  tom= AVIMClient.getInstance("Tom");
+                tom.open(new AVIMClientCallback() {
                     @Override
                     public void done(AVIMClient client, AVIMException e) {
                         if (e == null) {
