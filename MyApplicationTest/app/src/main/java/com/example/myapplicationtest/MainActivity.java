@@ -27,76 +27,75 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btn1, btn2;
+  private Button btn1, btn2;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AVIMClient jerry = AVIMClient.getInstance("Jerry");
-                jerry.open(new AVIMClientCallback() {
-                    @Override
-                    public void done(AVIMClient client, AVIMException e) {
-                        if (e == null) {
-                            // 成功打开连接
-                            System.out.println("---登陆成功---");
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    btn1 = (Button) findViewById(R.id.btn1);
+    btn2 = (Button) findViewById(R.id.btn2);
+    btn1.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        AVIMClient jerry = AVIMClient.getInstance("Jerry");
+        jerry.open(new AVIMClientCallback() {
+          @Override
+          public void done(AVIMClient client, AVIMException e) {
+            if (e == null) {
+              // 成功打开连接
+              System.out.println("---登陆成功---");
 
-                            jerry.createConversation(Arrays.asList("PopPPPPPPPPPP"), null, null, true,
-                                    new AVIMConversationCreatedCallback() {
-                                        @Override
-                                        public void done(AVIMConversation conversation, AVIMException e) {
-                                            if (e == null) {
-                                                // 创建成功
-                                                int limit = 10;
-                                                conversation.blockMembers(Arrays.asList("PopPPPPPPPPPP"), new AVIMOperationPartiallySucceededCallback() {
-                                                    @Override
-                                                    public void done(AVIMException e, List<String> successfulClientIds, List<AVIMOperationFailure> failures) {
-
-
-                                                        System.out.println("---successfulClientIds---" + successfulClientIds.toString());
-                                                        System.out.println("---failures---" + failures.toString());
+              jerry.createConversation(Arrays.asList("PopPPPPPPPPPP"), null, null, true, new AVIMConversationCreatedCallback() {
+                @Override
+                public void done(AVIMConversation conversation, AVIMException e) {
+                  if (e == null) {
+                    // 创建成功
+                    int limit = 10;
+                    conversation.blockMembers(Arrays.asList("PopPPPPPPPPPP"), new AVIMOperationPartiallySucceededCallback() {
+                      @Override
+                      public void done(AVIMException e, List<String> successfulClientIds, List<AVIMOperationFailure> failures) {
 
 
-                                                        conversation.queryBlockedMembers(limit, "0", new AVIMConversationIterableResultCallback() {
-                                                            @Override
-                                                            public void done(AVIMConversationIterableResult iterableResult, AVIMException e) {
-                                                                List<String> members = iterableResult.getMembers();
-                                                                String next = iterableResult.getNext();
-                                                                System.out.println("---Members---" + members.toString());
-                                                                System.out.println("---next---" + next);
-                                                            }
-                                                        });
-                                                    }
-                                                });
+                        System.out.println("---successfulClientIds---" + successfulClientIds.toString());
+                        System.out.println("---failures---" + failures.toString());
 
 
-                                            }
-                                        }
-                                    });
+                        conversation.queryBlockedMembers(limit, "0", new AVIMConversationIterableResultCallback() {
+                          @Override
+                          public void done(AVIMConversationIterableResult iterableResult, AVIMException e) {
+                            List<String> members = iterableResult.getMembers();
+                            String next = iterableResult.getNext();
+                            System.out.println("---Members---" + members.toString());
+                            System.out.println("---next---" + next);
+                          }
+                        });
+                      }
+                    });
 
-                        }
-                    }
-                });
+
+                  }
+                }
+              });
+
             }
+          }
         });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AVIMClient tom = AVIMClient.getInstance("Tom");
-                tom.open(new AVIMClientCallback() {
-                    @Override
-                    public void done(AVIMClient client, AVIMException e) {
-                        if (e == null) {
-                            // 成功打开连接
-                        }
-                    }
-                });
+      }
+    });
+    btn2.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        AVIMClient tom = AVIMClient.getInstance("Tom");
+        tom.open(new AVIMClientCallback() {
+          @Override
+          public void done(AVIMClient client, AVIMException e) {
+            if (e == null) {
+              // 成功打开连接
             }
+          }
         });
-    }
+      }
+    });
+  }
 }
