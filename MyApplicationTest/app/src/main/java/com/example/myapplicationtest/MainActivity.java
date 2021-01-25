@@ -1,6 +1,7 @@
 package com.example.myapplicationtest;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import cn.leancloud.im.v2.AVIMException;
 import cn.leancloud.im.v2.AVIMMessage;
 import cn.leancloud.im.v2.callback.AVIMClientCallback;
 import cn.leancloud.im.v2.callback.AVIMConversationCreatedCallback;
+import cn.leancloud.im.v2.callback.AVIMConversationIterableResult;
+import cn.leancloud.im.v2.callback.AVIMConversationIterableResultCallback;
 import cn.leancloud.im.v2.callback.AVIMConversationSimpleResultCallback;
 import cn.leancloud.im.v2.callback.AVIMMessagesQueryCallback;
 import cn.leancloud.im.v2.callback.AVIMOperationFailure;
@@ -41,32 +44,35 @@ public class MainActivity extends AppCompatActivity {
                     public void done(AVIMClient client, AVIMException e) {
                         if (e == null) {
                             // 成功打开连接
-                            System.out.println("---登陆成功---" );
+                            System.out.println("---登陆成功---");
 
-                                jerry.createConversation(Arrays.asList("NNNMMM"),  null, null, true,
+                            jerry.createConversation(Arrays.asList("PopPPPPPPPPPP"), null, null, true,
                                     new AVIMConversationCreatedCallback() {
                                         @Override
                                         public void done(AVIMConversation conversation, AVIMException e) {
-                                            if(e == null) {
+                                            if (e == null) {
                                                 // 创建成功
                                                 int limit = 10;
-                                                conversation.blockMembers(Arrays.asList("NNNMMM"), new AVIMOperationPartiallySucceededCallback() {
+                                                conversation.blockMembers(Arrays.asList("PopPPPPPPPPPP"), new AVIMOperationPartiallySucceededCallback() {
                                                     @Override
                                                     public void done(AVIMException e, List<String> successfulClientIds, List<AVIMOperationFailure> failures) {
 
 
-                                                        conversation.queryBlockedMembers( new AVIMConversationSimpleResultCallback() {
+                                                        System.out.println("---successfulClientIds---" + successfulClientIds.toString());
+                                                        System.out.println("---failures---" + failures.toString());
+
+
+                                                        conversation.queryBlockedMembers(limit, "0", new AVIMConversationIterableResultCallback() {
                                                             @Override
-                                                            public void done(List<String> memberIdList, AVIMException e) {
-
-                                                                System.out.println("---memberIdList---"+memberIdList.toString() );
-
-
+                                                            public void done(AVIMConversationIterableResult iterableResult, AVIMException e) {
+                                                                List<String> members = iterableResult.getMembers();
+                                                                String next = iterableResult.getNext();
+                                                                System.out.println("---Members---" + members.toString());
+                                                                System.out.println("---next---" + next);
                                                             }
                                                         });
                                                     }
                                                 });
-
 
 
                                             }
@@ -81,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AVIMClient  tom= AVIMClient.getInstance("Tom");
+                AVIMClient tom = AVIMClient.getInstance("Tom");
                 tom.open(new AVIMClientCallback() {
                     @Override
                     public void done(AVIMClient client, AVIMException e) {
