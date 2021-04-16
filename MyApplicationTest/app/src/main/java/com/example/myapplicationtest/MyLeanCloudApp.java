@@ -11,10 +11,12 @@ public class MyLeanCloudApp extends Application {
 //    private static final String APPID = "JMBPc7y4SUPRDrOSHXjXVMN7-gzGzoHsz";
 //    private static final String APPKEY = "Wib2dECd48h1FzivFrH628ju";
 //    private static final String APP_SERVER_HOST = "https://jmbpc7y4.lc-cn-n1-shared.com";
+//
 
-    private static final String APPID = "heQFQ0SwoQqiI3gEAcvKXjeR-gzGzoHsz";
-    private static final String APPKEY = "lNSjPPPDohJjYMJcQSxi9qAm";
-    private static final String APP_SERVER_HOST = "https://heqfq0sw.lc-cn-n1-shared.com";
+
+    private static final String APPID = "1eUivazFXYwJvuGpPl2LE4uY-gzGzoHsz";
+    private static final String APPKEY = "nLMIaQSwIsHfF206PnOFoYYa";
+    private static final String APP_SERVER_HOST = "https://1euivazf.lc-cn-n1-shared.com";
     @Override
     public void onCreate() {
         super.onCreate();
