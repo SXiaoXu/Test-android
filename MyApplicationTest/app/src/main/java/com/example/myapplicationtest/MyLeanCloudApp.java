@@ -29,9 +29,7 @@ public class MyLeanCloudApp extends Application {
 //        LCUser.logIn("Tom201912", "123").subscribe(new Observer<LCUser>() {
 //            @Override
 //            public void onSubscribe(Disposable d) {
-//
 //            }
-//
 //            @Override
 //            public void onNext(LCUser avUser) {
 //                // 登录成功
