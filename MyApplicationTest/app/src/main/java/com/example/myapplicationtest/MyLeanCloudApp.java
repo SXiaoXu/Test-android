@@ -1,55 +1,52 @@
 package com.example.myapplicationtest;
 import android.app.Application;
+
 import cn.leancloud.AVLogger;
 import cn.leancloud.AVOSCloud;
-import cn.leancloud.im.v2.AVIMClient;
-import cn.leancloud.im.v2.AVIMClientEventHandler;
-import cn.leancloud.im.v2.AVIMMessageManager;
 
 public class MyLeanCloudApp extends Application {
 
     private static final String APPID = "JMBPc7y4SUPRDrOSHXjXVMN7-gzGzoHsz";
     private static final String APPKEY = "Wib2dECd48h1FzivFrH628ju";
     private static final String APP_SERVER_HOST = "https://jmbpc7y4.lc-cn-n1-shared.com";
-
-//    private static final String APPID = "1eUivazFXYwJvuGpPl2LE4uY-gzGzoHsz";
-//    private static final String APPKEY = "nLMIaQSwIsHfF206PnOFoYYa";
-//    private static final String APP_SERVER_HOST = "https://1euivazf.lc-cn-n1-shared.com";
+//
+//    private static final String APPID = "ptznboIvkaCkQKRW5v5EaXMf-MdYXbMMI";
+//    private static final String APPKEY = "VuCgGrwB7VE3Wz17IwUYgTJP";
+////    private static final String APP_SERVER_HOST = "https://1euivazf.lc-cn-n1-shared.com";
     @Override
     public void onCreate() {
         super.onCreate();
         AVOSCloud.setLogLevel(AVLogger.Level.DEBUG);
-        AVOSCloud.initialize(this, APPID, APPKEY, APP_SERVER_HOST);
-        AVIMMessageManager.setConversationEventHandler(new CustomConversationEventHandler());
-        AVIMClient.setClientEventHandler(MyClientEventHandler.getInstance());
-
+        AVOSCloud.initialize(this, APPID, APPKEY,APP_SERVER_HOST);
+//        LCIMMessageManager.setConversationEventHandler(new CustomConversationEventHandler());
+//        LCIMClient.setClientEventHandler(MyClientEventHandler.getInstance());
     }
 }
 //        //未读消息数量更新
-//        AVIMOptions.getGlobalOptions().setUnreadNotificationEnabled(true);
+//        LCIMOptions.getGlobalOptions().setUnreadNotificationEnabled(true);
 //        // 和 Conversation 相关的事件的 handler
 
-//        AVUser.logIn("Tom201912", "123").subscribe(new Observer<AVUser>() {
+//        LCUser.logIn("Tom201912", "123").subscribe(new Observer<LCUser>() {
 //            @Override
 //            public void onSubscribe(Disposable d) {
 //
 //            }
 //
 //            @Override
-//            public void onNext(AVUser avUser) {
+//            public void onNext(LCUser avUser) {
 //                // 登录成功
 //                System.out.println("登录成功");
-//AVInstallation avInstallation = AVInstallation.getCurrentInstallation();
-//avInstallation.put("owner", AVUser.getCurrentUser());
+//LCInstallation avInstallation = LCInstallation.getCurrentInstallation();
+//avInstallation.put("owner", LCUser.getCurrentUser());
 //avInstallation.put("date", new Date());
 //avInstallation.put("version", "456");
-//avInstallation.saveInBackground().subscribe(new Observer<AVObject>() {
+//avInstallation.saveInBackground().subscribe(new Observer<LCObject>() {
 //    @Override
 //    public void onSubscribe(Disposable d) {
 //    }
 //
 //    @Override
-//    public void onNext(AVObject avObject) {
+//    public void onNext(LCObject avObject) {
 //        System.out.println("succeed to save Installation. result: " + avObject);
 //    }
 //
